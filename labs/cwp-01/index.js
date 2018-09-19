@@ -1,3 +1,5 @@
-const name = process.argv[2];
 
-console.log(`Hi ${name}!`);
+// print all command line arguments
+process.argv.forEach((val, index) => {
+    console.log(`${index}: ${val}`);
+});
