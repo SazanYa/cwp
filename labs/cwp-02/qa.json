@@ -1,0 +1,19 @@
+{
+  "quiz": [
+  {
+    "q": "Can pigs walk on two feet?",
+    "a": "no"
+  },
+  {
+    "q": "Can a fish live out of water?",
+    "a": "no"
+  },
+  {
+    "q": "Are cars used to drive on the road?",
+    "a": "yes"
+  },
+  {
+    "q": "Are coffee and hot chocolate cold drinks?",
+    "a": "no"
+  }
+]}
