@@ -1,9 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-if (process.argv.length !== 3) {
-    process.exit(-1);
-}
+const argdir = process.argv[2];
+const cpydir = argdir + '\\' + path.basename(argdir);
+
+let files = [];
+let copyright = null;
 
 function getFiles(p) {
     fs.readdir(p, (err, items) => {
@@ -19,19 +21,20 @@ function getFiles(p) {
     });
 }
 
-let files = [];
-let copyright = null;
+if (process.argv.length !== 3) {
+    process.exit(-1);
+}
 
-const argdir = process.argv[2];
-const cpydir = argdir + '\\' + path.basename(argdir);
+fs.access(argdir, fs.constants.F_OK, (err) => {
+    if (err) {
+        console.log(`${argdir} does not exist`);
+        process.exit(-1);
+    }
+});
 
 fs.readFile("config.json", "utf8", function(err, data) {
     if (err) throw err;
     copyright = JSON.parse(data)['copyright'];
-});
-
-fs.access(argdir, fs.constants.F_OK, (err) => {
-    console.log(`${file} ${err ? 'does not exist' : 'exists'}`);
 });
 
 getFiles(argdir);
@@ -71,13 +74,12 @@ setTimeout(() => {
 
     // отслеживание директории
     fs.watch(cpydir, function(eventType, filename) {
-        if (eventType === 'rename') {
-
-        console.log(filename);
+        if (eventType === 'change') {
+            console.log(filename);
         }
     });
 
-}, 500);
+}, 100);
 
 
 
