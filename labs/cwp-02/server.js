@@ -30,7 +30,7 @@ const server = net.createServer((client) => {
 
         let answer;
 
-        log(client, `client: ${data}`)
+        log(client, `client: ${data}`);
 
         if (client.isFresh === false) {
             client.write(answer = ['yes', 'no'][Math.random() < 0.5 ? 0 : 1]);
