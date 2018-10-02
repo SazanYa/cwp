@@ -1,7 +1,8 @@
 const child_process = require('child_process');
 
 if (process.argv.length !== 3) {
-    process.exit(-1);
+    console.log('Required number of arguments: 1');
+    process.exit(1);
 }
 
 for (let i = 0; i < process.argv[2]; i++) {
