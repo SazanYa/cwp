@@ -1,31 +1,23 @@
 const net = require('net');
 const fs = require('fs');
+const path = require('path');
 const port = 8124;
 
 const client = new net.Socket();
 
-let questions = [];
-let questionNumber = 0;
+let files = [];
+let fileNumber = 0;
 
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+function sendFile(number) {
+    if (number < files.length) {
+        fs.readFile(files[number], "utf8", function(err, data) {
+            if (err) {
+                console.log('Error while reading file');
+                throw err;
+            }
 
-    while (0 !== currentIndex) {
-
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-function sendQuestion(number) {
-    if (number <= questions.length - 1) {
-        client.write(questions[number]['q']);
+            client.write(`${path.basename(files[number])}\r\n${data}`);
+        })
     } else {
         client.destroy();
     }
@@ -42,6 +34,18 @@ process.argv.forEach((value)=>{
             console.log(`${value} directory does not exist`);
             process.exit(1);
         }
+
+        // it's file
+        if (path.extname(value)) return;
+
+        fs.readdir(value, (err, items) => {
+            for (let i = 0; i < items.length; i++) {
+                if (path.extname(items[i])) {
+                    let file = value + '\\' + items[i];
+                    files.push(file);
+                }
+            }
+        });
     });
 });
 
@@ -53,18 +57,10 @@ client.connect(port, function() {
 });
 
 client.on('data', function(data) {
-    if (data === 'DEC') {
-        console.log(data);
-    } else if (data === 'ACK') {
-        sendQuestion(questionNumber);
+    if (data === 'OK' || 'ACK') {
+        sendFile(fileNumber++);
     } else {
-
-        console.log(questions[questionNumber]['q']);
-        console.log(`Server: ${data}`);
-        console.log(data === questions[questionNumber]['a'] ? 'Right' : 'Wrong');
-        console.log();
-
-        sendQuestion(++questionNumber);
+        console.log(data);
     }
 });
 
