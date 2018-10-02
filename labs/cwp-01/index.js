@@ -22,13 +22,14 @@ function getFiles(p) {
 }
 
 if (process.argv.length !== 3) {
-    process.exit(-1);
+    console.log('required number of arguments: 1');
+    process.exit(1);
 }
 
 fs.access(argdir, fs.constants.F_OK, (err) => {
     if (err) {
-        console.log(`${argdir} does not exist`);
-        process.exit(-1);
+        console.log(`${argdir} directory does not exist`);
+        process.exit(1);
     }
 });
 
