@@ -57,7 +57,7 @@ client.connect(port, function() {
 });
 
 client.on('data', function(data) {
-    if (data === 'OK' || 'ACK') {
+    if (data === 'OK' || data === 'ACK') {
         sendFile(fileNumber++);
     } else {
         console.log(data);

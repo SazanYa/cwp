@@ -3,14 +3,10 @@ const fs = require('fs');
 const port = 8124;
 
 const dir = process.env.defdir || 'D:\\temp\\cwp-03-server-stuff';
-// str > number
 const server_capacity = process.env.server_capacity || 2;
 
 let seed = 0;
 let client_count = 0;
-
-// clear
-console.log(dir);
 
 function identify(client) {
     client.setEncoding('utf8');
@@ -33,6 +29,8 @@ function log(client, data, con = false) {
     }
 }
 
+// main problem is
+// client_count > server_capacity && file size is too much
 const server = net.createServer((client) => {
 
     identify(client);
@@ -54,9 +52,6 @@ const server = net.createServer((client) => {
 
             if (client.service === 'FILES') {
 
-                let meta = data.split('\r\n');
-                let file = [meta.shift(), meta.join('\r\n')];
-
                 fs.mkdir(`${dir}\\${client.id}`, (err) => {
                     if (err) {
                         if (err.code === 'EEXIST') {}
@@ -65,6 +60,9 @@ const server = net.createServer((client) => {
                             throw err;
                         }
                     }
+
+                    let meta = data.split('\r\n');
+                    let file = [meta.shift(), meta.join('\r\n')];
 
                     fs.writeFile(`${dir}\\${client.id}\\${file[0]}`, file[1], (err) => {
                         if (err) {
@@ -80,6 +78,7 @@ const server = net.createServer((client) => {
 
                 if (data === 'FILES' && ++client_count > server_capacity) {
                     client.end('Exceeded the maximum number of connections ');
+                    return;
                 }
 
                 client.write(answer = 'ACK');
@@ -96,7 +95,10 @@ const server = net.createServer((client) => {
         }
     });
 
-    client.on('end', () => console.log(`Client ${client.id} disconnected`));
+    client.on('end', () => {
+        console.log(`Client ${client.id} disconnected`);
+        client_count--;
+    });
 });
 
 server.listen(port, () => {
