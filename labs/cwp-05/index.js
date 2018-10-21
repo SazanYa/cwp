@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const http = require('http');
 const art = require('C:\\Users\\sazan\\Desktop\\Универ\\ПСКП\\cwp\\labs\\cwp-05\\api\\articles-api');
 const com = require('C:\\Users\\sazan\\Desktop\\Универ\\ПСКП\\cwp\\labs\\cwp-05\\api\\comments-api');
@@ -51,6 +51,10 @@ server.listen(port, hostname, () => {
 
 function getHandler(url) {
     return handlers[url] || notFound;
+}
+
+function notFound(req, res, payload, cb) {
+    cb({ code: 404, message: 'Not found'});
 }
 
 function parseBodyJson(req, cb) {
