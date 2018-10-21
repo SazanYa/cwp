@@ -104,12 +104,11 @@ const server = net.createServer((client) => {
     console.log(`Client ${client.id} connected`);
 
     client.on('data', (data) => {
-        // new client
         if (!client.isFresh) {
 
             log(client, `client: ${data}`);
 
-            if (client.service === 'QA') qaService(client)
+            if (client.service === 'QA') qaService(client);
             if (client.service === 'FILES') filesService(client, data);
             if (client.service === 'REMOTE') remoteService(client, data);
 
