@@ -6,22 +6,7 @@
          "text": "text1",
          "date": "2018-10-12T13:40:00.427Z",
          "author": "SazanYa",
-         "comments": [
-            {
-               "id": "1",
-               "articleId": "1",
-               "text": "comment1",
-               "date": "2018-10-12T13:51:50.417Z",
-               "author": "Bogdan"
-            },
-            {
-               "id": "2",
-               "articleId": "1",
-               "text": "comment2",
-               "date": "2018-10-12T14:13:50.417Z",
-               "author": "Mixer"
-            }
-         ]
+         "comments": []
       },
       {
          "id": "2",
@@ -66,13 +51,6 @@
                "text": "comment2",
                "date": "2018-10-14T14:13:50.417Z",
                "author": "SazanYa"
-            },
-            {
-               "articleId": "3",
-               "text": "comment3",
-               "date": "2018-10-16T13:51:50.417Z",
-               "author": "Bob",
-               "id": "3"
             }
          ]
       }
