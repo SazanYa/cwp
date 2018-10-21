@@ -1,0 +1,22 @@
+[09:05:46]
+POST
+/api/comments/create
+{
+	"articleId": "3",
+	"text": "comment3",
+	"date": "2018-10-16T13:51:50.417Z",
+	"author": "Bob"
+}
+SUCCESS
+
+[09:31:29]
+POST
+/api/comments/create
+{
+	"articleId": "3",
+	"text": "comment3",
+	"date": "2018-10-16T13:51:50.417Z",
+	"author": "Bob"
+}
+SUCCESS
+
