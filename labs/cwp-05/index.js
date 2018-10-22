@@ -1,7 +1,7 @@
 ﻿const fs = require('fs');
 const http = require('http');
-const art = require('C:\\Users\\sazan\\Desktop\\Универ\\ПСКП\\cwp\\labs\\cwp-05\\api\\articles-api');
-const com = require('C:\\Users\\sazan\\Desktop\\Универ\\ПСКП\\cwp\\labs\\cwp-05\\api\\comments-api');
+const art = require('./api/articles-api');
+const com = require('./api/comments-api');
 
 const hostname = '127.0.0.1';
 const port = 3000;

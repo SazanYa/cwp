@@ -1,6 +1,6 @@
 const fs = require('fs');
-const validate = require('C:\\Users\\sazan\\Desktop\\Универ\\ПСКП\\cwp\\labs\\cwp-05\\api/validation-api');
-const error = require('C:\\Users\\sazan\\Desktop\\Универ\\ПСКП\\cwp\\labs\\cwp-05\\api/error-api');
+const validate = require('./validation-api');
+const error = require('./error-api');
 
 let articles = JSON.parse(fs.readFileSync('articles.json'))['articles'];
 
