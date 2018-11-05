@@ -38,6 +38,5 @@ function getId(array) {
 
 // TODO:write to articles.json
 function updateJson(articles) {
-    let json = { "articles": articles};
-    fs.writeFileSync("result.json", JSON.stringify(json, "", 3), "utf8");
+    fs.writeFileSync('result.json', JSON.stringify({ articles }, '', 3), 'utf8');
 }

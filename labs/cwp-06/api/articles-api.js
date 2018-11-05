@@ -5,12 +5,12 @@ const error = require('./error-api');
 let articles = JSON.parse(fs.readFileSync('articles.json'))['articles'];
 
 
-exports.readAllArticles = function(req, res, payload, cb) {
+exports.readAllArticles = function (req, res, payload, cb) {
     sortArticles(payload);
     cb(null, getPage(payload));
 }
 
-exports.readArticle = function(req, res, payload, cb) {
+exports.readArticle = function (req, res, payload, cb) {
     if (validate.isValidId(payload.id)) {
         let index = articles.findIndex(a => a.id === payload.id);
         if (index !== -1) cb(null, articles[index]);
@@ -18,7 +18,7 @@ exports.readArticle = function(req, res, payload, cb) {
     } else error.requestInvalid(req, res, payload, cb);
 }
 
-exports.createArticle = function(req, res, payload, cb) {
+exports.createArticle = function (req, res, payload, cb) {
     if (validate.isValidArticle(payload)) {
         payload.id = getId(articles).toString();
         payload.comments = [];
@@ -28,7 +28,7 @@ exports.createArticle = function(req, res, payload, cb) {
     } else error.requestInvalid(req, res, payload, cb);
 }
 
-exports.updateArticle = function(req, res, payload, cb) {
+exports.updateArticle = function (req, res, payload, cb) {
     if (validate.isValidId(payload.id)) {
         let index = articles.findIndex(a => a.id === payload.id);
         if (index !== -1) {
@@ -41,7 +41,7 @@ exports.updateArticle = function(req, res, payload, cb) {
     } else error.requestInvalid(req, res, payload, cb);
 }
 
-exports.deleteArticle = function(req, res, payload, cb) {
+exports.deleteArticle = function (req, res, payload, cb) {
     if (validate.isValidId(payload.id)) {
         let index = articles.findIndex(a => a.id === payload.id);
         if (index !== -1) {
@@ -54,17 +54,16 @@ exports.deleteArticle = function(req, res, payload, cb) {
 }
 
 function getLastId(array) {
-    return Number(array[array.length-1].id);
+    return Number(array[array.length - 1].id);
 }
 
 function getId(array) {
     return getLastId(array) + 1;
 }
 
-// TODO:write to articles.json
 function updateJson(articles) {
-    let json = { "articles": articles };
-    fs.writeFileSync("result.json", JSON.stringify(json, "", 3), "utf8");
+    let json = {"articles": articles};
+    fs.writeFileSync("articles.json", JSON.stringify(json, "", 3), "utf8");
 }
 
 function sortArticles(payload) {
@@ -113,10 +112,10 @@ function getPage(payload) {
     }
 
     return answer = {
-        "items" : page,
-        "meta" : {
+        "items": page,
+        "meta": {
             "page": pageNumber,
-            "pages": Number( (articles.length / limit).toFixed() ) + 1,
+            "pages": Number((articles.length / limit).toFixed()) + 1,
             "count": articles.length,
             "limit": limit
         }
