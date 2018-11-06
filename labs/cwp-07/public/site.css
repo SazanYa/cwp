@@ -1,5 +1,42 @@
+body {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+p.article {
+    font-size: 14pt;
+    padding-bottom: 5pt;
+}
+
+p.author {
+    font-size: 16pt;
+    font-style: italic;
+}
+
+b {
+    font-size: 20pt;
+    padding: 0;
+    margin: 0;
+}
 
 .header {
     background: #e6d885;
     padding: 10px;
+    height: 100px;
+}
+
+.article-header {
+    background: #56e690;
+    margin-top: 20px;
+    padding: 5px
+}
+
+#wrapper {
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
 }

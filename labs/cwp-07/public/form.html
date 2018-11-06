@@ -8,22 +8,32 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="form.js"></script>
 <body>
-<h1 class="header">Article addition</h1>
-<a href="index.html" style='text-align: right'>Back</a>
-<h2>
-    <hr/>
-    <label for="title">TITLE:</label>
-    <input id="title"/>
-</h2>
-<h2>
-    <label for="text">TEXT:</label>
-    <input id="text"/>
-</h2>
-<h2>
-    <label for="author">AUTHOR:</label>
-    <input id="author"/>
-</h2>
-<input type="button" id="button" value="ADD"/>
-
+<div id="wrapper">
+    <div class="header">
+        <h1  style="text-align: center">ARTICLE ADDITION</h1>
+        <div style="text-align: right; float: right">
+            <a href="index.html">Main</a>
+        </div>
+    </div>
+    <div style="text-align: center">
+        <h2>
+            <hr/>
+            <label for="title">TITLE:</label>
+            <input id="title"/>
+        </h2>
+        <h2>
+            <label for="text">TEXT:</label>
+            <input id="text"/>
+        </h2>
+        <h2>
+            <label for="author">AUTHOR:</label>
+            <input id="author"/>
+        </h2>
+        <hr>
+    </div>
+    <div style="text-align: center">
+        <button id="addbtn">ADD ARTICLE</button>
+    </div>
+</div>
 </body>
 </html>

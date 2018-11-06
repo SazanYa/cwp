@@ -1,29 +1,18 @@
 $(function () {
-    let d = new Date();
-
-    $("#button").click(function () {
+    $("#addbtn").click(function () {
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:3000/api/articles/create",
             data: JSON.stringify({
                 title: $("#title").val(),
                 text: $("#text").val(),
-                date: d.toISOString(),
+                date: (new Date()).toISOString(),
                 author: $("#author").val()
             }),
             success: function (response) {
-                console.log("Create article...");
-            }
-        });
-        return false;
-    });
-
-    $("#back").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "http://127.0.0.1:3000/index.html",
-            success: function (response) {
-                console.log("Create back...");
+                $("#title").val("");
+                $("#text").val("");
+                $("#author").val("");
             }
         });
         return false;

@@ -1,8 +1,8 @@
 
-let pageNumber = 1;
-let maxPages;
 
-function readall() {
+let maxPages = 0;
+
+function readall(pageNumber) {
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:3000/api/articles/readall",
@@ -16,40 +16,64 @@ function readall() {
         success: function (data) {
             console.log(data);
             maxPages = data.meta.pages;
+            $("#pageNumber").text(pageNumber.toString());
             for (let i = 0; i < data.items.length; i++) {
-                $("#dataArticles").append("<h1 style='background: #56e690'>"
-                    + data.items[i].title + "</h1><h3>"
-                    + data.items[i].text + "</h3><h2 >"
-                    + data.items[i].author + "</h2><h1><hr></h1>");
+                $("#dataArticles").append("<div class='article-header'><b>"
+                    + data.items[i].title + "</b><p>"
+                    + data.items[i].date + "</p></div><p class='article'>"
+                    + data.items[i].text + "</p><p class='author'>"
+                    + data.items[i].author + "</p><hr>");
             }
         }
     });
 }
 
-$(function () {
-    readall();
+function update(pageNumber) {
 
-    $("#updbtn").click(function () {
-        $("#dataArticles").empty();
-        pageNumber = 1;
-        readall();
-        return false;
-    });
+    $("#dataArticles").empty();
+
+    refreshButtons();
+    readall(pageNumber);
+
+    if (pageNumber == 1) {
+        $("#prevbtn").prop("disabled", true);
+    }
+    if (pageNumber == maxPages) {
+        $("#nextbtn").prop("disabled", true);
+    }
+}
+
+function refreshButtons() {
+    $("#nextbtn").prop("disabled", false);
+    $("#prevbtn").prop("disabled", false);
+}
+
+$(function () {
+    let pageNumber = 1;
+    update(pageNumber);
 
     $("#prevbtn").click(function () {
-        if (pageNumber == 1) { return; }
-        pageNumber--;
-        $("#dataArticles").empty();
-        readall();
+        update(--pageNumber);
         return false;
     });
 
     $("#nextbtn").click(function () {
-        if (pageNumber == maxPages - 1) { return; }
-        pageNumber++;
-        $("#dataArticles").empty();
-        readall();
+        update(++pageNumber);
         return false;
     });
 
+    $("#sortOrder").change(function () {
+        update(pageNumber = 1);
+        return false;
+    });
+
+    $("#sortField").change(function () {
+        update(pageNumber = 1);
+        return false;
+    });
+
+    $("#limit").change(function () {
+        update(pageNumber = 1);
+        return false;
+    });
 });
