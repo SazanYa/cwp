@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>CWP09</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../css/reveal.css">
+  <link rel="stylesheet" href="../css/theme/yandex.css" id="theme">
+  <link rel="stylesheet" href="../lib/css/zenburn.css">
+  <link rel="stylesheet" href="../css/user.css">
+</head>
+<body class="yandex nodejs"><div class="reveal"><div class="slides">
+
+  <section class="large">
+    <h2>Express, 2</h2>
+    <p class="author">
+      <small>Лекция 09</small>
+    </p>
+  </section>
+
+  <section>
+    <h3><span class="red">D</span>ebugging</h3>
+    <h4>Отладка</h4>
+  </section>
+
+  <section>
+    <h4>Debugging</h4>
+
+    <pre class="javascript"><code>
+// *nix
+DEBUG=express:* node index.js
+
+// Windows
+set DEBUG=express:* & node index.js
+
+// JS
+process.env.DEBUG = 'express:*';
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Debugging</h4>
+
+    <pre class="javascript"><code>
+const logger = (req, res, next) => {
+  console.log(req.url);
+  next();
+};
+
+const hello = (req, res) => {
+  res.send('hello');
+};
+
+app.use(express.static('.'), { index: false });
+app.use(logger);
+app.use(hello);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Debugging</h4>
+
+    <pre class="javascript"><code>
+express:router use / query +1ms
+express:router use / expressInit +1ms
+express:router use / serveStatic +1ms
+express:router use / logger +0ms
+express:router use / hello +0ms
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Debugging</h4>
+
+    <pre><code>
+GET http://127.0.0.1:3000/
+
+express:router dispatching GET / +1s
+express:router query  : / +1ms
+express:router expressInit  : / +0ms
+express:router serveStatic  : / +1ms
+express:router logger  : / +3ms
+express:router hello  : / +0ms
+    </code></pre>
+  </section>
+
+  <section>
+    <h3><span class="red">A</span>PI</h3>
+    <h4>Express</h4>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+const options = {
+  caseSensitive: false,
+  strict: false,
+  mergeParams: false
+};
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// caseSensitive: false
+
+'/news' === '/News'
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// strict: false
+
+'/news' === '/news/'
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// mergeParams: false
+
+const news = express.Router();
+const comments = express.Router();
+
+comments.get('/:commentId', (req, res) => {
+  console.log(req.params);
+  res.send(`c#${req.params.commentId}
+    / n#${req.params.newsId}`);
+});
+
+news.use('/:newsId/comments', comments);
+
+app.use('/news', news);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// mergeParams: false
+
+GET http://127.0.0.1:3000/news/1/comments/2
+
+{ commentId: '2' }
+
+c#2 / n#undefined
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// mergeParams: true
+
+const news = express.Router();
+const comments
+  = express.Router({ mergeParams: true });
+
+comments.get('/:commentId', (req, res) => {
+  console.log(req.params);
+  res.send(`c#${req.params.commentId}
+    / n#${req.params.newsId}`);
+});
+
+news.use('/:newsId/comments', comments);
+
+app.use('/news', news);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// mergeParams: true
+
+GET http://127.0.0.1:3000/news/1/comments/2
+
+{ newsId: '1', commentId: '2' }
+
+c#2 / n#1
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// mergeParams: true
+
+const news = express.Router();
+const comments
+  = express.Router({ mergeParams: true });
+
+comments.get('/:id', (req, res) => {
+  console.log(req.params);
+  res.send(`c#${req.params.id}`);
+});
+
+news.use('/:id/comments', comments);
+
+app.use('/news', news);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>Express - Router</h4>
+
+    <pre class="javascript"><code>
+// mergeParams: true
+
+GET http://127.0.0.1:3000/news/1/comments/2
+
+{ id: '2' }
+
+c#2
+    </code></pre>
+  </section>
+
+  <section>
+    <h3><span class="red">A</span>PI</h3>
+    <h4>Application</h4>
+  </section>
+
+  <section>
+    <h4>App</h4>
+
+    <pre class="javascript"><code>
+const app = express();
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Locals</h4>
+
+    <pre class="javascript"><code>
+app.locals.title = 'My App';
+app.locals.email = 'me@myapp.com';
+
+...
+
+const logger = (req, res, next) => {
+  console.log(req.app.locals.title);
+  next();
+};
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Mountpath</h4>
+
+    <pre class="javascript"><code>
+const app = express(); // the main app
+const admin = express(); // the sub app
+
+admin.get('/', (req, res) => {
+  console.log(admin.mountpath); // /admin
+  res.send('Admin Homepage');
+});
+
+app.use('/admin', admin); // mount the sub app
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Path</h4>
+
+    <pre class="javascript"><code>
+const app = express(),
+  blog = express(),
+  blogAdmin = express();
+
+app.use('/blog', blog);
+blog.use('/admin', blogAdmin);
+
+console.log(app.path()); // ''
+console.log(blog.path()); // '/blog'
+console.log(blogAdmin.path()); // '/blog/admin'
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Param</h4>
+
+    <pre class="javascript"><code>
+app.param('userId', (req, res, next, id) => {
+  User.find(id, (err, user) => {
+    if (err) next(err);
+
+    req.user = user;
+    next();
+  });
+});
+
+app.get('/user/:userId', (req, res) => {
+  ...
+});
+
+app.get('/user/:userId/comment', (req, res) => {
+  ...
+});
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Param</h4>
+
+    <pre class="javascript"><code>
+app.param('id', (req, res, next, id) => {
+  console.log('CALLED ONLY ONCE');
+  next();
+});
+
+app.get('/user/:id', (req, res, next) => {
+  console.log('although this matches');
+  next();
+});
+
+app.get('/user/:id', (req, res) => {
+  console.log('and this matches too');
+  res.end();
+});
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Param</h4>
+
+    <pre class="javascript"><code>
+GET http://127.0.0.1:3000/user/42
+
+CALLED ONLY ONCE
+although this matches
+and this matches too
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Param</h4>
+
+    <pre class="javascript"><code>
+app.param(['id', 'page'], function (req, res, next, value) {
+  console.log('CALLED ONLY ONCE with', value);
+  next();
+});
+
+app.get('/user/:id/:page', function (req, res, next) {
+  console.log('although this matches');
+  next();
+});
+
+app.get('/user/:id/:page', function (req, res) {
+  console.log('and this matches too');
+  res.end();
+});
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Param</h4>
+
+    <pre class="javascript"><code>
+CALLED ONLY ONCE with 42
+CALLED ONLY ONCE with 3
+although this matches
+and this matches too
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+app.get(property);
+app.set(property, value);
+    </code></pre>
+
+    <pre class="javascript fragment"><code>
+app.disable(property);
+app.enable(property);
+    </code></pre>
+
+    <pre class="javascript fragment"><code>
+app.disabled(property);
+app.enabled(property);
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+case sensitive routing // '/Foo', '/foo'
+etag
+strict routing // '/foo', '/foo/'
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+query parser | Varied
+
+false
+'simple' - querystring
+'extended' - qs
+function
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+// https://www.npmjs.com/package/qs
+
+'foo[bar][baz]=foobarbaz'
+
+=>
+
+{
+  foo: {
+    bar: {
+      baz: 'foobarbaz'
+    }
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+// https://www.npmjs.com/package/qs
+
+'a[]=b&a[]=c'
+
+=>
+
+{
+  a: ['b', 'c']
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+// https://www.npmjs.com/package/qs
+
+'a[0]=b&a[2]=c&a[1]=d'
+
+=>
+
+{
+  a: ['b', 'd', 'c']
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+env | String
+
+'production'
+'development'
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+x-powered-by | Boolean
+
+"X-Powered-By: Express" HTTP header
+    </code></pre>
+  </section>
+
+  <section>
+    <h4>App - Settings</h4>
+
+    <pre class="javascript"><code>
+app.set('title', 'Brand New App');
+app.get('title');
+
+> 'Brand New App'
+    </code></pre>
+  </section>
+</div></div>
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    controls: false,
+    progress: true,
+    slideNumber: true,
+    history: true,
+    center: true,
+    hideAddressBar: true,
+    transition: 'slide',
+    dependencies: [
+      {
+        src: '../plugin/highlight/highlight.js',
+        async: true,
+        condition: function () {
+          return Boolean(document.querySelector('pre code'));
+        },
+        callback: function () {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+    ]
+  });
+</script>
+</body>
+</html>
