@@ -9,6 +9,30 @@
 [CWP/LECTION/06 - ES.next](https://accetone.github.io/cwp/06)  
 [CWP/LECTION/07 - Прототипы](https://accetone.github.io/cwp/07)  
 [CWP/LECTION/08 - Sequelize](https://accetone.github.io/cwp/08)  
+[CWP/LECTION/09 - Express, 2](https://accetone.github.io/cwp/09)  
+[CWP/LECTION/10 - N-layer архитектура](https://accetone.github.io/cwp/10)  
+[CWP/LECTION/11 - Модульная система](https://accetone.github.io/cwp/11)  
+[CWP/LECTION/12 - npm / yarn](https://accetone.github.io/cwp/12)  
+[CWP/LECTION/13 - JSON / YAML](https://accetone.github.io/cwp/13)  
+[CWP/LECTION/14 - HTTP](https://accetone.github.io/cwp/14)  
+[CWP/LECTION/15 - REST](https://accetone.github.io/cwp/15)  
+[CWP/LECTION/16 - Swagger](https://accetone.github.io/cwp/16)  
+[CWP/LECTION/17 - GraphQL](https://accetone.github.io/cwp/17)  
+[CWP/LECTION/18 - Аутентификация](https://accetone.github.io/cwp/18)  
+[CWP/LECTION/19 - Авторизация](https://accetone.github.io/cwp/19)  
+[CWP/LECTION/20 - Деплой](https://accetone.github.io/cwp/20)  
+[CWP/LECTION/21 - Тестирование](https://accetone.github.io/cwp/21)  
+[CWP/LECTION/22 - React](https://accetone.github.io/cwp/22)  
+[CWP/LECTION/23 - Инструменты сборки](https://accetone.github.io/cwp/23)  
+[CWP/LECTION/24 - Иммутабельность](https://accetone.github.io/cwp/24)  
+[CWP/LECTION/25 - Flux / Redux](https://accetone.github.io/cwp/25)  
+[CWP/LECTION/26 - Redux Actions](https://accetone.github.io/cwp/26)  
+[CWP/LECTION/27 - Redux Saga](https://accetone.github.io/cwp/27)  
+[CWP/LECTION/28 - React Router](https://accetone.github.io/cwp/28)  
+[CWP/LECTION/29 - Reselect](https://accetone.github.io/cwp/29)  
+[CWP/LECTION/30 - Recompose](https://accetone.github.io/cwp/30)  
+[CWP/LECTION/31 - PropTypes](https://accetone.github.io/cwp/31)  
+[CWP/LECTION/32 - Serverless](https://accetone.github.io/cwp/32)  
 
 #### Задания
 [CWP/TASK/00 - Знакомство с Git](https://accetone.github.io/cwp/tasks/00.html)   
@@ -32,5 +56,33 @@
 [CWP/TASK/18 - Классы](https://accetone.github.io/cwp/tasks/18.html)  
 [CWP/TASK/19 - Валидация](https://accetone.github.io/cwp/tasks/19.html)  
 [CWP/TASK/20 - Шаблоны](https://accetone.github.io/cwp/tasks/20.html)  
+[CWP/TASK/21 - N-layer архитектура](https://accetone.github.io/cwp/tasks/21.html)  
+[CWP/TASK/22 - npm-пакеты](https://accetone.github.io/cwp/tasks/22.html)  
+[CWP/TASK/23 - Yarn Workspaces](https://accetone.github.io/cwp/tasks/23.html)  
+[CWP/TASK/24 - Веб-сокеты](https://accetone.github.io/cwp/tasks/24.html)  
+[CWP/TASK/25 - HTTP2 / Encoding](https://accetone.github.io/cwp/tasks/25.html)  
+[CWP/TASK/26 - REST, часть 1](https://accetone.github.io/cwp/tasks/26.html)  
+[CWP/TASK/27 - REST, часть 2](https://accetone.github.io/cwp/tasks/27.html)  
+[CWP/TASK/28 - Swagger](https://accetone.github.io/cwp/tasks/28.html)  
+[CWP/TASK/29 - GraphQL](https://accetone.github.io/cwp/tasks/29.html)  
+[CWP/TASK/30 - SSO и двухфакторная аутентификация](https://accetone.github.io/cwp/tasks/30.html)  
+[CWP/TASK/31 - Passport.js](https://accetone.github.io/cwp/tasks/31.html)  
+[CWP/TASK/32 - Авторизация](https://accetone.github.io/cwp/tasks/32.html)  
+[CWP/TASK/33 - Деплой](https://accetone.github.io/cwp/tasks/33.html)  
+[CWP/TASK/34 - Тестирование](https://accetone.github.io/cwp/tasks/34.html)  
+[CWP/TASK/35 - React](https://accetone.github.io/cwp/tasks/35.html)  
+[CWP/TASK/36 - Сборка](https://accetone.github.io/cwp/tasks/36.html)  
+[CWP/TASK/37 - Immutable.js](https://accetone.github.io/cwp/tasks/37.html)  
+[CWP/TASK/38 - Redux](https://accetone.github.io/cwp/tasks/38.html)  
+[CWP/TASK/39 - Redux Saga](https://accetone.github.io/cwp/tasks/39.html)  
+[CWP/TASK/40 - React Router](https://accetone.github.io/cwp/tasks/40.html)  
 
 #### Дополнительно
+
+
+
+Handlebars
+Bluebird
+Koa
+
+Показать cusrev.com
