@@ -65,17 +65,17 @@ server.listen(port, () => {
     console.log(`Server listening on localhost:${port}`);
 });
 
+function getId() {
+    return Date.now() + seed++;
+}
+
 function identify(client) {
     client.setEncoding('utf8');
-    client.id = Date.now() + seed++;
+    client.id = getId();
 }
 
 function getFileName(worker) {
     return `worker${worker.id}.json`;
-}
-
-function getId() {
-    return Date.now() + seed++;
 }
 
 function killProcess(processes, id) {
