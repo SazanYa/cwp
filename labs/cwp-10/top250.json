@@ -1,0 +1,102 @@
+[
+   {
+      "id": 0,
+      "title": "The Hobbit: The Desolation of Smaug",
+      "rating": "8.070",
+      "year": 2013,
+      "budget": 225000000,
+      "gross": 960366855,
+      "poster": "https://www.kinopoisk.ru/images/film_big/408876.jpg",
+      "position": 1
+   },
+   {
+      "id": 1,
+      "title": "Interstate 60",
+      "rating": "8.070",
+      "year": 2001,
+      "budget": 7000000,
+      "gross": null,
+      "poster": "https://www.kinopoisk.ru/images/film_big/3563.jpg",
+      "position": 2
+   },
+   {
+      "id": 2,
+      "title": "The Bucket List",
+      "rating": "8.070",
+      "year": 2007,
+      "budget": 45000000,
+      "gross": 175372502,
+      "poster": "https://www.kinopoisk.ru/images/film_big/258885.jpg",
+      "position": 5
+   },
+   {
+      "id": 3,
+      "title": "Hooligans",
+      "rating": "8.070",
+      "year": 2005,
+      "budget": null,
+      "gross": 3154346,
+      "poster": "https://www.kinopoisk.ru/images/film_big/77444.jpg",
+      "position": 3
+   },
+   {
+      "id": 4,
+      "title": "3 Idiots",
+      "rating": "8.069",
+      "year": 2009,
+      "budget": 7640874,
+      "gross": 86532874,
+      "poster": "https://www.kinopoisk.ru/images/film_big/423210.jpg",
+      "position": 4
+   },
+   {
+      "id": 5,
+      "title": "Брат 2",
+      "rating": "8.067",
+      "year": 2000,
+      "budget": 1500000,
+      "gross": 1080000,
+      "poster": "https://www.kinopoisk.ru/images/film_big/41520.jpg",
+      "position": 6
+   },
+   {
+      "id": 6,
+      "title": "The Hurricane",
+      "rating": "8.067",
+      "year": 1999,
+      "budget": 50000000,
+      "gross": 73956241,
+      "poster": "https://www.kinopoisk.ru/images/film_big/4914.jpg",
+      "position": 7
+   },
+   {
+      "id": 7,
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "rating": "8.066",
+      "year": 2004,
+      "budget": 130000000,
+      "gross": 796688549,
+      "poster": "https://www.kinopoisk.ru/images/film_big/322.jpg",
+      "position": 8
+   },
+   {
+      "id": 8,
+      "title": "L'ours",
+      "rating": "8.066",
+      "year": 1988,
+      "budget": null,
+      "gross": 31753898,
+      "poster": "https://www.kinopoisk.ru/images/film_big/22907.jpg",
+      "position": 9
+   },
+   {
+      "id": 9,
+      "title": "The Curious Case of Benjamin Button",
+      "rating": "8.065",
+      "year": 2008,
+      "budget": 150000000,
+      "gross": 333932083,
+      "poster": "https://www.kinopoisk.ru/images/film_big/81555.jpg",
+      "position": 10
+   }
+]
